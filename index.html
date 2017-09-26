@@ -1,0 +1,52 @@
+<title>Zombie Map Game</title>
+</head>
+<body>
+My zombie map
+<div id="zombie_map"></div>
+<script>
+    var zombie_map;
+    var all_markers = [];
+    var data = "40.669904 -111.796841 weapon.png\n40.669986 -111.797331 zombie.png\n40.670169 -111.800249 hospital.png";
+    var markers = data.split("\n");
+    function set_my_position(position){
+	var lat = position.coords.latitude;
+	var lng = position.coords.longitude;
+	var player_position = new google.maps.LatLng(lat, lng);
+	var marker = new google.maps.Marker({
+		position: player_position,
+		map: zombie_map,
+		icon: "player.png"
+	});
+	}
+    function initMap() {
+
+            zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
+            zoom: 14,
+            center: {lat: 40.678453, lng: -111.790603}});
+	    if(navigator.geolocation) {
+    	        navigator.geolocation.watchPosition(set_my_position);
+	    }
+            else {
+    		alert("Geolocation doesn't work in your browser");
+	    }
+    for(var i = 0; i < markers.length;i++){
+	var marker_data = markers[i].trim();
+	marker_data = marker_data.split(" ");
+	var latitude = marker_data[0];
+	var longitude = marker_data[1];
+	var emoji = marker_data[2];
+	var marker_position = new google.maps.LatLng(latitude, longitude);
+	var marker = new google.maps.Marker({
+		position: marker_position,
+		map: zombie_map,
+		icon: emoji
+	});
+	all_markers.push(marker);
+    }
+}
+</script>
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCWwNuYwx9NxUMIkBx0D6MRgN9ja3V88w&callback=initMap">
+  </script>
+</body>
+</html>
