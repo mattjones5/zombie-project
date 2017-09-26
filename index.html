@@ -52,11 +52,15 @@ My zombie map
 	var longitude = marker_data[1];
 	var emoji = marker_data[2];
 	var marker_position = new google.maps.LatLng(40.678453, -111.790603);
-	old_position = new google.maps.LatLng(latitude, longitude);
+	opp = new google.maps.LatLng(latitude, longitude);
 	var marker = new google.maps.Marker({
 		position: marker_position,
 		map: zombie_map,
 		icon: emoji
+	});
+	old_position = new google.maps.Marker({
+		position: opp,
+		map: zombie_map,
 	});
 	all_markers.push(marker);
     }
