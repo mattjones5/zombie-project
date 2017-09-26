@@ -22,18 +22,6 @@ My zombie map
     var all_markers = [];
     var data = "40.669904 -111.796841 weapon.png\n40.669986 -111.797331 zombie.png\n40.670169 -111.800249 hospital.png";
     var markers = data.split("\n");
-    function set_my_position(position){
-	old_position.setMap(null);
-	var lat = position.coords.latitude;
-	var lng = position.coords.longitude;
-	var player_position = new google.maps.LatLng(lat, lng);
-	var marker = new google.maps.Marker({
-		position: player_position,
-		map: zombie_map,
-		icon: "player.png"
-	});
-	old_position = marker;
-	}
     function initMap() {
 
             zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
@@ -65,6 +53,18 @@ My zombie map
 	all_markers.push(marker);
     }
 }
+function set_my_position(position){
+	old_position.setMap(null);
+	var lat = position.coords.latitude;
+	var lng = position.coords.longitude;
+	var player_position = new google.maps.LatLng(lat, lng);
+	var marker = new google.maps.Marker({
+		position: player_position,
+		map: zombie_map,
+		icon: "player.png"
+	});
+	old_position = marker;
+	}
 </script>
  <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCWwNuYwx9NxUMIkBx0D6MRgN9ja3V88w&callback=initMap">
