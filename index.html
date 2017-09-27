@@ -64,7 +64,7 @@ function set_my_position(position){
 		icon: "player.png"
 	});
 	old_position = marker;
-	for(var i = 0; i < all_makers.length; i++){
+	for(var i = 0; i < all_markers.length; i++){
 	    var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
 	    if(distance < tolerance){
 		var what_is_it = allmarkers[i].getIcon();
